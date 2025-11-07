@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">kotlin_h1</string>
+    <string name="app_name">kotlin_h</string>
+    <string name="hello_world">hi!</string>
+    <string name="text">Add me :}</string>
 </resources>
