@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +22,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,11 +33,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,19 +108,31 @@ fun MyscreenPreview(){
 
 @Composable
 fun Squares(number: Int){
+    val context = LocalContext.current
     val color = if (number%2==0){
         colorResource(R.color.chet)
     }
         else
             colorResource(R.color.nechet)
-    Box(
+    Button(
+
+        onClick= {Toast.makeText(context, number.toString(), Toast.LENGTH_LONG).show()},
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1f)
-            .background(color),
-        contentAlignment = Alignment.Center
-
-    ){
+            .aspectRatio(1f),
+        colors = ButtonDefaults.buttonColors(containerColor = color),
+        contentPadding= PaddingValues(0.dp),
+        shape = RoundedCornerShape(0.dp)
+    )
+//    Box(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .aspectRatio(1f)
+//            .background(color),
+//        contentAlignment = Alignment.Center
+//
+//    )
+{
         Text(
             text = number.toString(),
             color = colorResource(R.color.number),
